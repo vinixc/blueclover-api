@@ -17,7 +17,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 
-import com.example.blueclover.api.model.Categoria_;
+import com.example.blueclover.api.model.Categoria_HIBER;
 import com.example.blueclover.api.model.Lancamento;
 import com.example.blueclover.api.model.Lancamento_;
 import com.example.blueclover.api.model.Pessoa_;
@@ -54,7 +54,7 @@ public class LancamentoRepositoryImpl implements LancamentoRepositoryQuery {
 				, root.get(Lancamento_.codigo), root.get(Lancamento_.descricao)
 				, root.get(Lancamento_.dataVencimento), root.get(Lancamento_.dataPagamento)
 				, root.get(Lancamento_.valor), root.get(Lancamento_.tipo)
-				, root.get(Lancamento_.categoria).get(Categoria_.nome)
+				, root.get(Lancamento_.categoria).get(Categoria_HIBER.nome)
 				, root.get(Lancamento_.pessoa).get(Pessoa_.nome)));
 		
 		Predicate[] predicates = criarRestricoes(lancamentoFilter, builder, root);
