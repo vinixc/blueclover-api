@@ -22,7 +22,7 @@ public class Lancamento {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long codigo;
-	private String descricao;
+	private String descicrao;
 	
 	@NotNull
 	@Column(name = "data_vencimento")
@@ -58,11 +58,11 @@ public class Lancamento {
 	}
 
 	public String getDescricao() {
-		return descricao;
+		return descicrao;
 	}
 
 	public void setDescricao(String descricao) {
-		this.descricao = descricao;
+		this.descicrao = descricao;
 	}
 
 	public LocalDate getDataVencimento() {
