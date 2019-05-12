@@ -1,6 +1,6 @@
 CREATE TABLE lancamento(
 	codigo INTEGER DEFAULT NEXTVAL('sequence_lancamento') primary key,
-	descicrao VARCHAR(50) NOT NULL,
+	descricao VARCHAR(50) NOT NULL,
 	data_vencimento DATE NOT NULL,
 	data_pagamento DATE,
 	valor DECIMAL(10,2) NOT NULL,
