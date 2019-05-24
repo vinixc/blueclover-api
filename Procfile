@@ -1,1 +1,1 @@
-web: java -Dserver.port=$PORT -Dspring.profiles.active=prod $JAVA_OPTS -jar target/blueclover*.jar
+web: java -Dserver.port=$PORT -Dspring.profiles.active=profiles.active=oauth-security, prod $JAVA_OPTS -jar target/blueclover*.jar
