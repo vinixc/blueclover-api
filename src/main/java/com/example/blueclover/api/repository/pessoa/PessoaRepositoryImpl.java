@@ -18,7 +18,7 @@ import org.springframework.data.domain.Pageable;
 
 import com.example.blueclover.api.model.Lancamento;
 import com.example.blueclover.api.model.Pessoa;
-import com.example.blueclover.api.model.Pessoa_HIBER;
+import com.example.blueclover.api.model.Pessoa_;
 import com.example.blueclover.api.repository.filter.LancamentoFilter;
 import com.example.blueclover.api.repository.filter.PessoaFilter;
 import com.example.blueclover.api.repository.projection.ResumoLancamento;
@@ -50,7 +50,7 @@ public class PessoaRepositoryImpl implements PessoaRepositoryQuery {
 		
 		if (!StringUtils.isEmpty(pessoaFilter.getNome())) {
 			predicates.add(builder.like(
-					builder.lower(root.get(Pessoa_HIBER.nome)), "%" + pessoaFilter.getNome().toLowerCase() + "%"));
+					builder.lower(root.get(Pessoa_.nome)), "%" + pessoaFilter.getNome().toLowerCase() + "%"));
 		}
 		
 		return predicates.toArray(new Predicate[predicates.size()]);
@@ -62,7 +62,7 @@ public class PessoaRepositoryImpl implements PessoaRepositoryQuery {
 		Root<Pessoa> root = criteria.from(Pessoa.class);
 		
 		criteria.multiselect(builder.construct(ResumoLancamento.class
-				, root.get(Pessoa_HIBER.codigo), root.get(Pessoa_HIBER.nome)));
+				, root.get(Pessoa_.codigo), root.get(Pessoa_.nome)));
 				
 		
 		Predicate[] predicates = criarRestricoes(pessoaFilter, builder, root);

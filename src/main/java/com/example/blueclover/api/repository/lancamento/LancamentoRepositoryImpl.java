@@ -17,13 +17,8 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 
-import com.example.blueclover.api.model.Categoria_HIBER;
-import com.example.blueclover.api.model.Categoria_HIBER;
 import com.example.blueclover.api.model.Lancamento;
-import com.example.blueclover.api.model.Lancamento_HIBER;
-import com.example.blueclover.api.model.Lancamento_HIBER;
-import com.example.blueclover.api.model.Pessoa_HIBER;
-import com.example.blueclover.api.model.Pessoa_HIBER;
+import com.example.blueclover.api.model.Lancamento_;
 import com.example.blueclover.api.repository.LancamentoRepository;
 import com.example.blueclover.api.repository.filter.LancamentoFilter;
 import com.example.blueclover.api.repository.projection.ResumoLancamento;
@@ -54,17 +49,17 @@ public class LancamentoRepositoryImpl implements LancamentoRepositoryQuery {
 		Root<Lancamento> root = criteria.from(Lancamento.class);
 		
 		criteria.select(builder.construct(ResumoLancamento.class
-				, root.get(Lancamento_HIBER.codigo), root.get(Lancamento_HIBER.descricao)
-				, root.get(Lancamento_HIBER.dataVencimento), root.get(Lancamento_HIBER.dataPagamento)
-				, root.get(Lancamento_HIBER.valor), root.get(Lancamento_HIBER.tipo)
-				, root.get(Lancamento_HIBER.categoria).get(Categoria_HIBER.nome)
-				, root.get(Lancamento_HIBER.pessoa).get(Pessoa_HIBER.nome)));
+				, root.get("codigo"), root.get("descricao")
+				, root.get("dataVencimento"), root.get("dataPagamento")
+				, root.get("valor"), root.get("tipo")
+				, root.get("categoria").get("nome")
+				, root.get("pessoa").get("nome")));
 		
 		Predicate[] predicates = criarRestricoes(lancamentoFilter, builder, root);
 		criteria.where(predicates);
 		
 		TypedQuery<ResumoLancamento> query = manager.createQuery(criteria);
-		adicionarRestricoesDePaginacao(query, (Pageable) pageable);
+		adicionarRestricoesDePaginacao(query, pageable);
 		return new PageImpl<>(query.getResultList(), pageable, total(lancamentoFilter));
 		
 		}
@@ -75,17 +70,17 @@ public class LancamentoRepositoryImpl implements LancamentoRepositoryQuery {
 		
 		if (!StringUtils.isEmpty(lancamentoFilter.getDescricao())) {
 			predicates.add(builder.like(
-					builder.lower(root.get(Lancamento_HIBER.descricao)), "%" + lancamentoFilter.getDescricao().toLowerCase() + "%"));
+					builder.lower(root.get(Lancamento_.descricao)), "%" + lancamentoFilter.getDescricao().toLowerCase() + "%"));
 		}
 		
 		if (lancamentoFilter.getDataVencimentoDe() != null) {
 			predicates.add(
-					builder.greaterThanOrEqualTo(root.get(Lancamento_HIBER.dataVencimento), lancamentoFilter.getDataVencimentoDe()));
+					builder.greaterThanOrEqualTo(root.get(Lancamento_.dataVencimento), lancamentoFilter.getDataVencimentoDe()));
 		}
 		
 		if (lancamentoFilter.getDataVencimentoAte() != null) {
 			predicates.add(
-					builder.lessThanOrEqualTo(root.get(Lancamento_HIBER.dataVencimento), lancamentoFilter.getDataVencimentoAte()));
+					builder.lessThanOrEqualTo(root.get(Lancamento_.dataVencimento), lancamentoFilter.getDataVencimentoAte()));
 		}
 		
 		return predicates.toArray(new Predicate[predicates.size()]);

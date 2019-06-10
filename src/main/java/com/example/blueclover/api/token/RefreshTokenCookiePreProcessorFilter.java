@@ -19,9 +19,9 @@ import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
 
+@Profile("oauth-security") 
 @Component
 @Order(Ordered.HIGHEST_PRECEDENCE)
-@Profile("oauth-security")
 public class RefreshTokenCookiePreProcessorFilter implements Filter{
 
 	

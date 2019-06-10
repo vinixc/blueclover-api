@@ -32,6 +32,20 @@ public class RefreshTokenProcessor implements ResponseBodyAdvice<OAuth2AccessTok
 		
 		return returnType.getMethod().getName().equals("postAccessToken");
 	}
+	
+	private void removerRefreshTokenDoBody(DefaultOAuth2AccessToken token) {
+		token.setRefreshToken(null);
+}
+	
+	private void adicionarRefreshTokenNoCookie(String refreshToken, HttpServletRequest req, HttpServletResponse resp) {
+		Cookie refreshTokenCookie = new Cookie("refreshToken", refreshToken);
+		refreshTokenCookie.setHttpOnly(true);
+		refreshTokenCookie.setSecure(blueCloverApiProperty.getSeguranca().isEnableHttps());
+		refreshTokenCookie.setPath(req.getContextPath()+ "/oauth/token");
+		refreshTokenCookie.setMaxAge(25920000);
+		resp.addCookie(refreshTokenCookie);
+		
+	}
 
 	@Override
 	public OAuth2AccessToken beforeBodyWrite(OAuth2AccessToken body, MethodParameter returnType,
@@ -51,18 +65,6 @@ public class RefreshTokenProcessor implements ResponseBodyAdvice<OAuth2AccessTok
 		return body;
 	}
 
-	private void removerRefreshTokenDoBody(DefaultOAuth2AccessToken token) {
-			token.setRefreshToken(null);
-	}
-
-	private void adicionarRefreshTokenNoCookie(String refreshToken, HttpServletRequest req, HttpServletResponse resp) {
-		Cookie refreshTokenCookie = new Cookie("refreshToken", refreshToken);
-		refreshTokenCookie.setHttpOnly(true);
-		refreshTokenCookie.setSecure(blueCloverApiProperty.getSeguranca().isEnableHttps());
-		refreshTokenCookie.setPath(req.getContextPath()+ "/oauth/token");
-		refreshTokenCookie.setMaxAge(25920000);
-		resp.addCookie(refreshTokenCookie);
-		
-	}
+	
 
 }
