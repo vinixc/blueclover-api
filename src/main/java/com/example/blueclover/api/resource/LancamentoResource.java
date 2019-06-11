@@ -29,6 +29,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.blueclover.api.event.RecursoCriadoEvent;
 import com.example.blueclover.api.exceptionhandler.BluecloverExceptionHandler.Erro;
 import com.example.blueclover.api.model.Lancamento;
+import com.example.blueclover.api.model.Pessoa;
 import com.example.blueclover.api.repository.LancamentoRepository;
 import com.example.blueclover.api.repository.filter.LancamentoFilter;
 import com.example.blueclover.api.repository.projection.ResumoLancamento;

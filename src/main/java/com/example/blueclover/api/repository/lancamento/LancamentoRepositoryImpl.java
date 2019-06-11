@@ -13,7 +13,6 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
@@ -30,7 +29,6 @@ public class LancamentoRepositoryImpl implements LancamentoRepositoryQuery {
 	@PersistenceContext
 	private EntityManager manager;
 	
-	@Autowired
 	public Page<Lancamento> filtrar(LancamentoFilter lancamentoFilter, Pageable pageable) {
 		CriteriaBuilder builder = manager.getCriteriaBuilder();
 		CriteriaQuery<Lancamento> criteria = builder.createQuery(Lancamento.class);
@@ -45,7 +43,6 @@ public class LancamentoRepositoryImpl implements LancamentoRepositoryQuery {
 		return new PageImpl<>(query.getResultList(), pageable, total(lancamentoFilter));
 	}
 	
-	@Autowired
 	public Page<ResumoLancamento> resumir(LancamentoFilter lancamentoFilter, Pageable pageable) {
 		CriteriaBuilder builder = manager.getCriteriaBuilder();
 		CriteriaQuery<ResumoLancamento> criteria = builder.createQuery(ResumoLancamento.class);
@@ -108,17 +105,6 @@ public class LancamentoRepositoryImpl implements LancamentoRepositoryQuery {
 		
 		criteria.select(builder.count(root));
 		return manager.createQuery(criteria).getSingleResult();
-	}
-
-	public Page<Lancamento> filtrar(LancamentoFilter lancamentoFilter, java.awt.print.Pageable pageable) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public Page<ResumoLancamento> resumir(LancamentoFilter lancamentoFilter, java.awt.print.Pageable pageable) {
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 
