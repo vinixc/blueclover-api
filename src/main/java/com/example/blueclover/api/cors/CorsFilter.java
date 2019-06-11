@@ -24,11 +24,7 @@ public class CorsFilter implements Filter {
 	
 	@Autowired
 	private BlueCloverApiProperty blueCloverAPiProperty;
-	
-	@Override
-	public void init(FilterConfig filterConfig) throws ServletException {
-		
-	}
+
 
 	@Override
 	public void doFilter(ServletRequest req, ServletResponse resp, FilterChain chain)
@@ -54,6 +50,11 @@ public class CorsFilter implements Filter {
 
 	@Override
 	public void destroy() {
+		
+	}
+	
+	@Override
+	public void init(FilterConfig filterConfig) throws ServletException {
 		
 	}
 
