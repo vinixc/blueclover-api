@@ -5,7 +5,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 @ConfigurationProperties("blueclover")
 public class BlueCloverApiProperty {
 	
-	private String originPermitida = "http://localhost:4200";
+	private String originPermitida = "https://blueclover-angularr.herokuapp.com";
 	
 	public String getOriginPermitida() {
 		return originPermitida;
