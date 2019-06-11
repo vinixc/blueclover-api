@@ -6,7 +6,7 @@ import javax.persistence.metamodel.StaticMetamodel;
 
 @Generated(value = "org.hibernate.jpamodelgen.JPAMetaModelEntityProcessor")
 @StaticMetamodel(Endereco.class)
-public abstract class Endereco_ {
+public abstract class Endereco_H {
 
 	public static volatile SingularAttribute<Endereco, String> cidade;
 	public static volatile SingularAttribute<Endereco, String> estado;

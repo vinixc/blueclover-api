@@ -18,7 +18,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 
 import com.example.blueclover.api.model.Lancamento;
-import com.example.blueclover.api.model.Lancamento_;
+import com.example.blueclover.api.model.Lancamento_H;
 import com.example.blueclover.api.repository.LancamentoRepository;
 import com.example.blueclover.api.repository.filter.LancamentoFilter;
 import com.example.blueclover.api.repository.projection.ResumoLancamento;
@@ -70,17 +70,17 @@ public class LancamentoRepositoryImpl implements LancamentoRepositoryQuery {
 		
 		if (!StringUtils.isEmpty(lancamentoFilter.getDescricao())) {
 			predicates.add(builder.like(
-					builder.lower(root.get(Lancamento_.descricao)), "%" + lancamentoFilter.getDescricao().toLowerCase() + "%"));
+					builder.lower(root.get(Lancamento_H.descricao)), "%" + lancamentoFilter.getDescricao().toLowerCase() + "%"));
 		}
 		
 		if (lancamentoFilter.getDataVencimentoDe() != null) {
 			predicates.add(
-					builder.greaterThanOrEqualTo(root.get(Lancamento_.dataVencimento), lancamentoFilter.getDataVencimentoDe()));
+					builder.greaterThanOrEqualTo(root.get(Lancamento_H.dataVencimento), lancamentoFilter.getDataVencimentoDe()));
 		}
 		
 		if (lancamentoFilter.getDataVencimentoAte() != null) {
 			predicates.add(
-					builder.lessThanOrEqualTo(root.get(Lancamento_.dataVencimento), lancamentoFilter.getDataVencimentoAte()));
+					builder.lessThanOrEqualTo(root.get(Lancamento_H.dataVencimento), lancamentoFilter.getDataVencimentoAte()));
 		}
 		
 		return predicates.toArray(new Predicate[predicates.size()]);
