@@ -14,5 +14,7 @@ public interface LancamentoRepositoryQuery {
 	
 	public Page<ResumoLancamento> resumir(LancamentoFilter lancamentoFilter, org.springframework.data.domain.Pageable pageable);
 
+	Page<ResumoLancamento> resumir(LancamentoFilter lancamentoFilter, Pageable pageable);
+
 
 }
